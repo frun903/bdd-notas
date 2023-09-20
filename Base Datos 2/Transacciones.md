@@ -1,24 +1,42 @@
 Consisten en tomar un bloque de sentencias SQL (de forma individual serian ya una transc.) pero al agruparlas las defino como una _unidad de ejecución_ que se consideran una sola sentencia, este bloque tiene un inicio y un fin, si existiera alguna con error _todo el bloque no se ejecutara_. 
 
-La base de datos esta en estado 0 si desarrollo la transacción llega a un estado 1 pero si llega a detectar un error elimina lo procesado y vuelve al estado 0.  
+La base de datos tiene estados, si esta en estado 0 y desarrollo una transacción llega a un estado 1.  Si llegara a detectar un error  o haber uno se elimina lo procesado y vuelve al estado 0.  
 
-|est1|---------|est2|
-|est1 |------x  Fallo:vuelve a estado 1
+|estado 0|--------->|estado 1|
+|estado 0 |------x  Fallo:vuelve a estado 0
 
 **Las transacciones mantienen la integridad de los datos**
 
-Para que se ejecute c/d transaccion todo los elementos de la unidad deben funcionar por eso es _atómica_.
+Para que se ejecute c/d transacción todo los elementos de la unidad deben funcionar por eso es _atómica_ eso protege la integridad de los datos. 
 
-Como voy a tener varias transacciones al mismo tiempo al mismo se generan varios inconvenientes 
-- lectura sucia: modificaciones en una tabla mientras la A modifica la tabla y B entra mira pero luego la modificación cancela B se queda  con datos erróneos.
-- Lecturas fantasmas: Leo 3 registros y vuelvo leer y leo 9
+Otras características que debe contar las transacciones son __ACID__ que quiere decir:
+- **Atómicas**: Esto significa que todas las operaciones tienen éxito o fallan.
+- **Consistencia:** Mantener el estado de la base de datos en un estado válido.
+- **Aislamiento:** Es el requisito de que otras operaciones no puedan acceder a los datos que se han modificado durante una transacción que aún no se ha completado.
+- **Durabilidad:** Es la capacidad del sistema de base de datos para poder recuperarse en caso que se presenten transacciones comprometidas contra cualquier tipo de falla del sistema.
 
-_Ante esto las transacciones se **aislan** para evitar los errores._ Si dos quieren entrar al mismo tiempo el que lo logro llegar antes genera un _bloqueo_ en el recurso o tabla. Estos bloqueos tienen diferentes niveles. El usuario que comenzó el bloqueo debe _confirmar la transacción_ y si no lo hace no se desbloqueara el recurso.
+
+
+### Aislamiento 
+Es el requisito de que otras operaciones no puedan acceder a los datos que se han modificado durante una transacción que aún no se ha completado.
+
+Como voy a tener varias transacciones al mismo tiempo al mismo se generan varios inconvenientes:  
+- Lectura Sucia: modificaciones en una tabla mientras la A modifica la tabla y B entra mira pero luego la modificación cancela B se queda  con datos erróneos.
+- Lecturas fantasmas: una transacción en un momento lanza una consulta de selección con una condición y recibe en ese momento N filas y posteriormente vuelve a lanzar la misma consulta junto con la misma condición y recibe M filas con M > N .Leo 3 registros y vuelvo leer y de golpe hay 9 registros.
+- Lecturas no repetibles:Ocurre cuando una transacción activa vuelve a leer un dato cuyo valor difiere con respecto al de la anterior lectura.
+
+_Ante esto las transacciones se **aíslan** para evitar los errores._ Si dos quieren entrar al mismo tiempo el que lo logro llegar antes genera un _bloqueo_ en el recurso o tabla. Estos bloqueos tienen diferentes niveles. El usuario que comenzó el bloqueo debe _confirmar la transacción_ y si no lo hace no se desbloqueara el recurso.
 
 #### Niveles de Aislamiento
-Los niveles de aislamientos los maneja el _servidor_, los mayores niveles de aislamientos limitan o disminuyen la performance del sistema. SQL tiene el _Read Confirm_, mysql no estaba preparada para utilizar transacciones, para eso esta el _engine InnoDB_ tecnología que se declara cuando creo la base de datos prepara para hacer transacciones. El _engine va en las tablas_, detalle si no vamos  a usar transacciones  no conviene activarlo
+Los niveles de aislamientos los maneja el _servidor_, los mayores niveles de aislamientos limitan o disminuyen la performance del sistema.
+
+SQL tiene el _Read Confirm_, Mysql no estaba preparada para utilizar transacciones, para eso esta el _engine InnoDB_ tecnología que se declara cuando creo la base de datos prepara para hacer transacciones. El _engine va en las tablas_, detalle si no vamos  a usar transacciones  no conviene activarlo ya que INNODB tiende a ser mas lento en las consultas. 
 
 ![[Pasted image 20230824153030.png]]
+
+#### Autocommit
+
+MySQL viene con un autocommit es decir que realiza automáticamente  las consultas (DML), esto quiere decir que si yo hago un insert automáticamente se veré reflejado en la tabla. _Para poder hacer uso de las transacciones deber cambiar esta opción._  
 
 **autocommit** viene en 1 ==> que las sentencias SQL son confirmadas por default
 
@@ -27,6 +45,15 @@ Para trabajar con transacciones deberé hacer
 SET autocommit=0; 
 
 y convertir el autocommit a un 0. 
+
+```SQL
+SELECT @@autocommit;--Ve en que estado esta el autocommit
+|1|
+
+SET autocommit=0; --Cambia el estado 
+
+```
+
 
 ## Ejercicios 
 
@@ -41,6 +68,7 @@ y convertir el autocommit a un 0.
 
 ![[Pasted image 20230824155015.png]]
 
+Este sirve para observar como el 
 
 ##### Problema 1
 Considere una transferencia entre dos cuentas. Para lograr esto tienes que escribir sentencias SQL que hagan lo siguiente: Verifique la disponibilidad del monto solicitado en la primera cuenta. Deducir cantidad solicitada de la primera cuenta Depositario en segunda cuenta Si alguien falla este proceso, el conjunto debe revertirse a su estado anterior.

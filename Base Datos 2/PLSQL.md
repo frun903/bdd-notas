@@ -105,7 +105,27 @@ DELIMITER
 
 ```
 
-Los parámetros entraran cuando llame al proce. 
+Los parámetros entraran cuando llame al procedimiento.
+
+#### Como ver los procedimientos almacenados que ya hice en una BD
+
+ChatGPT hasta 2021 en MySQL  tenia que hacer una consulta para saber los procedimientos almacenados:
+
+```sql
+SELECT ROUTINE_NAME
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE = 'PROCEDURE'
+AND ROUTINE_SCHEMA = 'nombre_de_tu_base_de_datos';
+
+--Ejemplo
+
+Select ROUTINE_NAME 
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE = 'PROCEDURE'
+AND ROUTINE_SCHEMA = 'Peliculas'
+
+```
+Esto te devuelve una lista de procedimetos almacenados pero no lo que hacen. 
 
 ---
 
