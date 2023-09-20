@@ -25,12 +25,16 @@ No me sirve tener una base de datos, si no puedo obtener información del ella p
 
 Interfaz del RDBMS MySQLWorkmech ==> [[MySQLWorkbench-ClienteGrafico]]
 
-La interfaces gráficas se conectan a mi servidor de base datos y a partir de ahí nos permiten visualizar y modificar los datos. La **consola o terminal** es mas especifica y mas rápida (es decir que te ahorra tiempos de respuestas) ya que me conecto directamente al servidor MySQL. 
+La interfaces gráficas se conectan a mi servidor de base datos y a partir de ahí nos permiten visualizar y modificar los datos. La **consola o** [[Terminal MySQL]] es mas especifica y mas rápida (es decir que te ahorra tiempos de respuestas) ya que me conecto directamente al servidor MySQL. 
 
 Entrar a la terminal
 
 ```
-mysql -u root -h localhost -p
+sudo mysql -u root -h localhost -p
+```
+
+```
+sudo mysql -u root -p
 ```
 
 
