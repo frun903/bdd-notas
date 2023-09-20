@@ -10,8 +10,8 @@ La base de datos esta en estado 0 si desarrollo la transacción llega a un estad
 Para que se ejecute c/d transaccion todo los elementos de la unidad deben funcionar por eso es _atómica_.
 
 Como voy a tener varias transacciones al mismo tiempo al mismo se generan varios inconvenientes 
-- lecutra sucia: modificacioens en una tabla mientras la A modifica la tabla y B entra mira pero luego la modificacion cancela B se queda  con datos erroneos.
-- Lecutras fantasmas: Leo 3 regiustros y vuelvo leer leo 9
+- lectura sucia: modificaciones en una tabla mientras la A modifica la tabla y B entra mira pero luego la modificación cancela B se queda  con datos erróneos.
+- Lecturas fantasmas: Leo 3 registros y vuelvo leer y leo 9
 
 _Ante esto las transacciones se **aislan** para evitar los errores._ Si dos quieren entrar al mismo tiempo el que lo logro llegar antes genera un _bloqueo_ en el recurso o tabla. Estos bloqueos tienen diferentes niveles. El usuario que comenzó el bloqueo debe _confirmar la transacción_ y si no lo hace no se desbloqueara el recurso.
 
@@ -74,7 +74,7 @@ end;
 
 
 
-**ctrl c ==> Para salir**
+
 
 
 

@@ -2,9 +2,9 @@
 Es aquel que nos ayudara a crear, borrar y alterar nuestros objetos  de mi base de datos. 
 Este tiene 3 comandos principales
 
-__Create__:Nos ayuda a crear bases de datos, tablas,vistas e indices.
+__Create__:Nos ayuda a crear bases de datos, tablas,vistas e indices.[RDB_SQL_DDL_DDM](#Create) 
 
-__Drop__: Borra las tablas (precaución al usarla, ya que puede borrar toda la base de datos)
+__Drop__: Borra las tablas (precaución al usarla, ya que puede borrar toda la base de datos)[RDB_SQL_DDL_DDM](#Alter) 
 
 __Alter__:Modifica u altera estas entidades.  
 
@@ -19,12 +19,14 @@ Las __Table__ o tablas son la proyección o traducción a SQL de la entidades qu
 Las __View__ o vistas es la proyección de la tabla en la BD para que sea entendible para mi usuario. Las view tienen otras características (ya hare un apartado sobre estas).
 
 
-## Create
+# Create
 
-##### **Crear base de Datos y usar BD**
+### Crear base de Datos y usar BD
 ```sql 
 
 CREATE DATABASE test_db;
+
+CREATE DATABASE IF NOT EXIST test_db;
 
 --Si quiero aclarar los caracteres a utilizar 
 create database test_db default character set utf8;
@@ -59,11 +61,10 @@ CREATE TABLE people (
  
 );
 
-
 ```
-Crear una tabla es mas complejo ya que cada elemtno de mi tabla tiene campos (tipos de datos) y estos campos pueden tener sus restricciones.
+Crear una tabla es mas complejo ya que cada elemento de mi tabla tiene campos (tipos de datos) y estos campos pueden tener sus restricciones. Una buena practica es nombrar las tablas con el plural del nombre que queremos que tenga por ej. si tengo la tabla persona conviene que sea personas, tambien conviene que sea en ingles.
 
-#### En Workbench
+##### En Workbench
 
 En _Workbench_ debo hacer click en la base de datos en la que quiera trabajar y luego click derecho en tablas "create tables" abrira un panel
 ![[Pasted image 20230810082336.png]]
@@ -91,7 +92,7 @@ CREATE TABLE `test_franco`.`Persona` (
 Si quiero ver en workbench la tabla, hago click derecho en la misma "select row, limit 100"
 
 
-### En phpMyAdmin
+##### En phpMyAdmin
 
 En _phpMyAdmin_ primero en nueva tabla nos va a pedir el numero de columnas y una vez puesto relleno los campos
 
@@ -105,7 +106,8 @@ El campo Nulo funciona asi: Si lo marco **dejara que los atributos puedan ser nu
 ![[Pasted image 20230510092026.png]]
 
 
-### Sentencia SQL
+
+#### Ej Sentencia  DDL
 
 Otro ejemplo de crear tabla:
 Debes crear una tabla de datos que permita almacenar información sobre personas, llamada `people`. La tabla tendrá cinco campos: person_id, last_name, first_name, address, y city.
@@ -144,7 +146,19 @@ ADD COnstraint pk_people Primary key (person_id)
 
 ```
 
-###**CREACIÓN DE VISTAS O VIEWS** 
+A la hora de añadir tablas y colocar __AUTO_INCREMENT__ deberé tener en cuenta, que si borro el registro el manejador de BD no se da cuenta por ej si yo tenia mi ultimo id 4 y lo borro por defecto el proximo sera 5, en mi tabla vería id 3 a 5.
+
+El __UNSIGNED__ no guarda en mi base de datos el bit negativo del signo esto nos ahorra memoria y _restringe_ a solo usar valores positivos (util por ejemplo en la logica del negocio).
+
+Otro elemento en la creación de tablas para poder
+
+```sql
+price DOUBLE(6,2) NOT NULL DEFAULT 10.0,
+```
+
+Aparte del not null para que no pueda poner datos nulos puedo usar, el elemento __DEFAULT__ en caso de que no se agregue el campo tengo uno por defecto que ira siempre(util en la logica del negocio). 
+
+### CREACIÓN DE VISTAS O VIEWS
 
 ![[Pasted image 20230510154529.png]]
 
@@ -173,6 +187,7 @@ En este ejemplo la tabla y la view seran iguales ya que yo la cree asi .
 ![[Pasted image 20230512081157.png]]
 
 
+# Alter
 ## Alter Table
 
 **Alter es el comando que me permite alterar o modificar las tablas**.  

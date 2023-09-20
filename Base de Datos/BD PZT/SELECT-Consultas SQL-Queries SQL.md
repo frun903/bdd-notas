@@ -245,7 +245,7 @@ Where status=activo;
 También podemos usar la sentencia distrito **!=** para filtrar los datos.
 
 La propiedad **LIKE** nos ayuda a traer registros de los cuales conocemos sólo una parte de la información. Por ejemplo tenemos una tabla con titulos 
-| Titulo      |   Fecha |
+| Titulo      |Fecha |
 |----------|---------|
 |PIKACHU |3-10 |
 |OLOZOM  | 2-25| 

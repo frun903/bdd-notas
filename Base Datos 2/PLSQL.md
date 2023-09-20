@@ -4,7 +4,9 @@ Es una lógica del servidor donde todos los clientes vana ejecutar la misma lóg
 Las reglas que puedo fijar en el PLSQL son _muy básicas_, si la reglas es muy compleja es difícil depurar (probar). Si hago mucha lógica de forma secuencial voy a bajar el rendimiento o porformance del servidor o Bd. 
 Se pueden utilizar DML no DDL (aunque algunos motores de BD no).
 
-Fijar cierta logica del negocio desde la base permitimos que solo veamos lo que qeramos que vean y funcione como queramos nosotros, y con las transacciones cuidamos la base de datos. Si  debemos controlar como se actualia la base debemos velar por los datos (estos son del cliente) deben ser consistentes y seguros (no deben sufrir perdida o modificaciones no indicadas). Ese _control debera tener un esquemas de soluciones por medio de proc. almace. y para la seguridad o consistencia (tanto si se debe borrar)_ 
+Fijar cierta logica del negocio desde la base permitimos que solo veamos lo que qeramos que vean y funcione como queramos nosotros, y con las transacciones cuidamos la base de datos. Si  debemos controlar como se actualia la base debemos velar por los datos (estos son del cliente) deben ser consistentes y seguros (no deben sufrir perdida o modificaciones no indicadas). Ese _control debera tener un esquemas de soluciones por medio de **procedimientos almacenados** y para la seguridad o consistencia (tanto si se debe borrar)_ 
+
+
 Si hay una actualiacion de la base se debe hacer una **auditoria de la base**, esa actualizacion debe ser detectada por el sistema, tipo si yo modifico la tabla X que quede guardado en algun lugar registrada la modificacion y que se modifico, esta actualizacion deber ser detectable para eso estan los _trigger o Disparador_ [[Trigger o disipador]]    
 
 ## Procedimientos  Almacenados

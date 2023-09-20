@@ -1,11 +1,11 @@
-Dentro de una organizacion tengo un sistema corporativo que tiene una _aplicativo_ y _base de datos_ la logica del negocio puede ir en uno o en otro o en el medio. Sin embargo hay ciertas cuestiones que son solo de la base de datos. Los datos dentro de la BD sean _datos calidad_ sin eso tanto la logica como la api van a fallar, esto incluye la tranferencia, insercion de datos de manera correcta para tener la calidad de los datos requiero ciertas taraes de administracion (eso me da seuridad en los datos) y el mantenimiento (que brinda la optimizacion de los mismos).  Estos datos como organización me va a permitir tomar decisiones para el desarrollo de la misma, si los datos no son buenos no podre hacer buenas estrategias para mi negocio. Los datos de calidad son las que dan soporte para tomar decisiones de mi negocio ya que son los echos por eso la importancia de cuidarlos y trabajarlos correctamente.
-Hoy en dia esos datos no solo sirven para el pasado sino tambien para ver que podria pasar en el futuro.
+Dentro de una organización tengo un sistema corporativo que tiene una _aplicativo_ y _base de datos_ la lógica del negocio puede ir en uno o en otro o en el medio. Sin embargo hay ciertas cuestiones que son solo de la base de datos. Los datos dentro de la BD sean _datos calidad_ sin eso tanto la lógica como la api van a fallar, esto incluye la transferencia, inserción de datos de manera correcta para tener la calidad de los datos requiero ciertas tareas de administración (eso me da seguridad en los datos) y el mantenimiento (que brinda la optimisacion de los mismos).  Estos datos como organización me va a permitir tomar decisiones para el desarrollo de la misma, si los datos no son buenos no podre hacer buenas estrategias para mi negocio. Los datos de calidad son las que dan soporte para tomar decisiones de mi negocio ya que son los echos por eso la importancia de cuidarlos y trabajarlos correctamente.
+Hoy en día esos datos no solo sirven para el pasado sino también para ver que podría pasar en el futuro. 
 
 En la materia de BD2  vamos a armar un data were  hause para poder dar soporte de decisiones a mis organizaciones. 
 
-Cuando pleantemaos un problema necestimos una solucion pero esa solucion requiere de tener un **objetivo claro** de los que debo trabajar.
+Cuando pleantemaos un problema necesitamos una solución pero esa solución requiere de tener un **objetivo claro** de los que debo trabajar.
 
-_Entonces a partir de un objetivo voy a diseñar el sistema del data were hause para poder dar soporte a la organizacion_. La importancia del objetivo es tan grande que si es mal planteado que perderiamos la direccion del proyecto. 
+_Entonces a partir de un objetivo voy a diseñar el sistema del data were hause para poder dar soporte a la organizacion_. La importancia del objetivo es tan grande que si es mal planteado que perderíamos la direccion del proyecto. 
 
 
 ##### Propuesta en curso:
